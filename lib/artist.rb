@@ -24,17 +24,16 @@ class Artist
     if found
       return found
     end
-    if found == nil 
-      new_artist = Artist.new(name)
-      return new_artist
+    if !found 
+      Artist.new(name)
     end 
   end
   
   def self.all 
     @@all 
-  end 
-end 
-
-p Artist.find_or_create_by_name("Janet Jackson")
-p Artist.find_or_create_by_name("Janet Jackson")
-    
+  end
+  
+  def to_s
+    "Artist <#{name}>"
+  end
+end

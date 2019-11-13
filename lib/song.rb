@@ -1,6 +1,7 @@
 #When you create a new song, add it to the artist's song array
 class Song 
-  attr_accessor :name, :artist
+  attr_accessor :name
+  attr_reader :artist
   @@all = []
   def initialize(name) 
     @name = name
@@ -20,24 +21,14 @@ class Song
     song_genre = filename_array[2]
     #make a new song
     new_song = Song.new(song_title)
-    p "I'm in new_by_filename #{new_song.artist_name = song_artist}"
-    artist = new_song.artist_name = song_artist
-    #find or create artist with the name song_artist and assign that artist to new_song
-    #this is a string. WHY?
-    new_song.artist = artist
-    #return new song
+    new_song.artist = Artist.find_or_create_by_name(song_artist)
     new_song
   end
-  
-  # def artist_name=(name)
-  #   self.artist = Artist.find_or_create_by_name(name)
-  #   artist.add_song(self)
-  # end
-    
-def artist_name=(name)
-  #look for an artist with name name in @@all
-  in_all = false
-  @@all.each do |song|
+      
+  def artist_name=(name)
+    #look for an artist with name name in @@all
+    in_all = false
+    @@all.each do |song|
       if song.artist 
         if song.artist.name == name
           #if you find an artist that matches the name, assign that artist to the song
@@ -51,13 +42,9 @@ def artist_name=(name)
       artist = Artist.new(name)
       self.artist = artist
     end
-    #the method returns an Artist object
-    p "This is what artist_name= returns #{self.artist}"
-    return self.artist
-end
+    #the return value is always the input (name)
+  end
 
-    
-    
   def self.all 
     @@all 
   end 
