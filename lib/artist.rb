@@ -1,5 +1,5 @@
 require 'pry'
-binding.pry
+# binding.pry
 class Artist 
   attr_accessor :name
   @@all = []
@@ -31,7 +31,8 @@ class Artist
   end
   
   def print_songs
-    binding.pry
+    artist_songs = Song.all.select {|song| song.artist == self}
+    song_titles = artist_songs.map {|song| puts song.title}
   end
   
 end
