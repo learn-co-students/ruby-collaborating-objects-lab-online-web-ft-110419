@@ -32,7 +32,7 @@ class Artist
   
   def print_songs
     artist_songs = Song.all.select {|song| song.artist == self}
-    song_titles = artist_songs.map {|song| puts song.title}
+    song_titles = artist_songs.map {|song| puts song.name}
   end
   
 end
