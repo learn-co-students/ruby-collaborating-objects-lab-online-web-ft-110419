@@ -1,4 +1,5 @@
 require 'pry'
+binding.pry
 class Artist 
   attr_accessor :name
   @@all = []
@@ -21,12 +22,16 @@ class Artist
   end
   
   def self.find_or_create_by_name(name)
-    artist? = self.all.select {|artist| artist.name == name}.empty?
-    binding.pry
-    #   artist = Artist.new(name)
-    # end
-    # self.all.select {|artist| artist.name == name}
+    finding_artist = self.all.find {|artist| artist.name == name}
+    if finding_artist.nil?
+       artist = Artist.new(name)
+    else
+        finding_artist
+    end
   end
   
+  def print_songs
+    binding.pry
+  end
   
 end
