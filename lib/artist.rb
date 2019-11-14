@@ -1,10 +1,11 @@
+require 'pry'
 class Artist 
   attr_accessor :name
   @@all = []
   
   def initialize(name)
     @name = name
-    @all << self
+    @@all << self
   end
   
   def self.all 
@@ -16,11 +17,15 @@ class Artist
   end
   
   def add_song(song)
-    song.artist == self
+    song.artist = self
   end
   
   def self.find_or_create_by_name(name)
-    self.all.select {|artist| artist.name == name}
+    artist? = self.all.select {|artist| artist.name == name}.empty?
+    binding.pry
+    #   artist = Artist.new(name)
+    # end
+    # self.all.select {|artist| artist.name == name}
   end
   
   
