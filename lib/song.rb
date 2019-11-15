@@ -1,5 +1,7 @@
+require_relative '../env.rb'
+
 class Song 
-  attr_accessor :name, :artist
+  attr_accessor :name, :artist, :genre
   @@all = []
   
   def initialize(name)
@@ -12,10 +14,11 @@ class Song
   end
   
   def self.new_by_filename(file_name)
-    song_title = file_name.split('-')[1].strip
-    song_artist = file_name.split('-').first.strip
-    song = Song.new(song_title)
-    song.artist_name = song_artist
+    artist, title, genre = file_name.split("-")
+ 
+    song = Song.new(title.strip)
+    song.genre = genre.strip
+    song.artist_name = artist.strip
     song
   end
   

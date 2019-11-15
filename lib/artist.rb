@@ -1,4 +1,6 @@
 require 'pry'
+require_relative '../env.rb'
+
 # binding.pry
 class Artist 
   attr_accessor :name

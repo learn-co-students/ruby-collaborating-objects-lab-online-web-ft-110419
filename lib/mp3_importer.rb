@@ -1,4 +1,5 @@
 require 'pry'
+require_relative '../env.rb'
 class MP3Importer
   attr_accessor :path
 
@@ -8,12 +9,12 @@ class MP3Importer
   end
   
   def files
-    # binding.pry
-    Dir["/#{@path}/*.mp3"]
+   Dir["#{@path}/*.mp3"].collect {|f| f[21..-1]}
+  # binding.pry
   end
   
   def import 
-    
+    files.each {|file| Song.new_by_filename(file)}
   end
   
 end
