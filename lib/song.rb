@@ -1,5 +1,3 @@
-require "pry"
-
 class Song 
     attr_accessor :name, :artist, :genre
     
@@ -8,14 +6,6 @@ class Song
     def initialize(title)
       @name = title
       @@all << self
-    end
-    
-    def artist=(name)
-      @artist = name
-    end
-    
-    def artist() 
-      @artist
     end
 
     def genre=(type)
@@ -27,6 +17,11 @@ class Song
           return artist.name 
       end 
   end
+
+    def artist_name=(name)
+      art = Artist.find_or_create_by_name(name)
+      art.add_song(self)
+    end
     
     def self.all 
       @@all 
@@ -36,10 +31,9 @@ class Song
       artist, title, genre = file_name.split("-")
    
       song = Song.new(title)
-      @genre = genre[0..-5].strip
-      @artist = artist.strip
-      @name = title.strip
-      binding.pry
+      song.genre = genre.strip![0..-5]
+      song.artist = Artist.new(artist.strip!)
+      song.name = title.strip!
       song
     end
   
