@@ -39,6 +39,7 @@ class Song
       @genre = genre[0..-5].strip
       @artist = artist.strip
       @name = title.strip
+      binding.pry
       song
     end
   
