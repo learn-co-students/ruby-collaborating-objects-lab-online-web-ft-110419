@@ -17,14 +17,8 @@ class Artist
   end 
   
   def self.find_or_create_by_name(name)
-    self.all.detect {|artist| artist.name == name} || Artist.new(name).save
+    self.all.detect {|artist| artist.name == name} || Artist.new(name)
   end
-  
-  def save
-    @@all << self # saves all created instances of Artist class in @@all class variable
-    self # the thing we just saved gets returned
-    # @all.push(self) - works
-  end 
   
   def add_song(song) 
     # self.songs << song # Artist.songs reader returns all
